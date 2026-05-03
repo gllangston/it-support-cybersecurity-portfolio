@@ -1,2 +1,2 @@
-# soc-analyst-portfolio
-Hands-on SOC analyst labs and investigations
+# IT/ Help Desk /SOC Portfolio
+Hands-on IT, Help Desk and SOC analyst labs and investigations
