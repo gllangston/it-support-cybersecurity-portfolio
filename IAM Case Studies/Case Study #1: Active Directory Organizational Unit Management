@@ -1,0 +1,80 @@
+# IAM Case Study #1: Active Directory Organizational Unit Management
+
+## Objective
+
+The purpose of this lab was to practice creating and organizing Organizational Units (OUs) in Microsoft Active Directory.
+
+This exercise helped me understand how IT and IAM administrators organize directory objects to support user management, access administration, and Group Policy.
+
+## Scenario
+
+An organization needs a structured Active Directory environment to manage employees, security groups, and computers.
+
+As an IAM administrator in a simulated environment, my task was to create an Organizational Unit structure to support centralized administration.
+
+## Tools Used
+
+- VMware Virtual Machine
+- Windows Server / Active Directory Domain Services
+- Active Directory Users and Computers (ADUC)
+- Windows 10
+
+## Steps Performed
+
+**Step 1: Accessed the environment**
+
+Logged into the Windows environment using an administrative account and changed the initial password as instructed.
+
+**Step 2: Opened Active Directory**
+
+Opened Active Directory Users and Computers (ADUC) to manage the directory structure.
+
+**Step 3: Created a parent Organizational Unit**
+
+Located the "IAM Class" OU and created a new OU using my name.
+
+**Step 4: Created three child Organizational Units**
+
+Inside the newly created OU, I created three sub-OUs:
+
+- Users
+- Groups
+- Computers
+
+**Step 5: Verified the organizational structure**
+
+Reviewed the Active Directory hierarchy to verify that the three child OUs appeared under the correct parent OU.
+
+## Expected OU Structure
+
+IAM Class
+
+└── My OU
+
+    ├── Users
+
+    ├── Groups
+
+    └── Computers
+
+## Security and IAM Concepts
+
+**Organizational Units:** Containers used to organize Active Directory objects and support delegated administration and Group Policy management.
+
+**Centralized Administration:** Allows administrators to organize and manage directory objects from a central environment.
+
+**Identity Lifecycle Management:** The OU structure can support processes such as onboarding, account changes, and offboarding.
+
+**Least Privilege:** Administrators can delegate management permissions to specific OUs without granting unrestricted control over the entire domain.
+
+## Lessons Learned
+
+This lab helped me understand how Organizational Units are created and organized in Active Directory.
+
+I learned that a well-structured directory makes it easier for IT administrators to locate objects, manage accounts, delegate administrative responsibilities, and apply Group Policy.
+
+## Conclusion
+
+This lab provided hands-on practice with Active Directory organizational management, a foundational skill for IAM and IT administration.
+
+Future labs will build on this structure by creating user accounts, managing security groups, assigning permissions, and practicing user provisioning and deprovisioning.
