@@ -36,3 +36,7 @@ Active Directory user management
 Group-based access control
 Troubleshooting user access issues
 Understanding of authentication vs authorization
+
+## Related case studies
+
+- [Finance File Share Permissions](../../iam-labs/finance-file-share-permissions/README.md)

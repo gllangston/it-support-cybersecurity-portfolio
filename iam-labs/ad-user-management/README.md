@@ -132,3 +132,8 @@ This lab helped me better understand how access control works in a domain enviro
 * NTFS permissions  
 * Access control troubleshooting  
 * Group-based access control (RBAC)
+
+## Related case studies
+
+- [Account Lockout and Password Reset](../../it-support/ad-account-lockout/README.md)
+- [User Access Troubleshooting](../../it-support/ad-user-access-troubleshooting/README.md)

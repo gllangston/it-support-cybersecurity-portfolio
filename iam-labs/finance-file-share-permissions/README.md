@@ -95,3 +95,7 @@ User in Finance_Group successfully accessed the shared folder:
 - Active Directory groups simplify access management
 - Testing from a client machine is critical for validation
 - Proper permissions configuration prevents unauthorized access
+
+## Related case studies
+
+- [User Access Troubleshooting](../../it-support/ad-user-access-troubleshooting/README.md)

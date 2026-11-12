@@ -9,6 +9,7 @@ I use my Windows Server and VMware home lab to practice Active Directory adminis
 | [Active Directory OU Management](iam-labs/ad-ou-management/README.md) | Created and verified a hierarchy for users, groups, and computers. |
 | [Finance File Share Permissions](iam-labs/finance-file-share-permissions/README.md) | Configured share and NTFS permissions and tested access from the client. |
 | [Group Policy Management](iam-labs/ad-group-policy-management/README.md) | Linked a policy to an OU and verified the Control Panel restriction. |
+| [User Management and Access Control](iam-labs/ad-user-management/README.md) | Practiced account administration, security group membership, and permission checks. |
 
 ## IT Support
 
@@ -17,7 +18,6 @@ I use my Windows Server and VMware home lab to practice Active Directory adminis
 | [Active Directory DNS Recovery](it-support/ad-dns-recovery/README.md) | Traced domain discovery failure to a stale DNS setting and verified recovery after removing the temporary workaround. |
 | [Account Lockout and Password Reset](it-support/ad-account-lockout/README.md) | Confirmed a lockout, restored account access, and verified the user could sign in. |
 | [User Access Troubleshooting](it-support/ad-user-access-troubleshooting/README.md) | Diagnosed missing Finance group membership and verified access after correcting it. |
-| [User Management and Access Control](it-support/ad-user-management/README.md) | Practiced account administration, security group membership, and permission checks. |
 
 ## SOC Investigations
 
