@@ -6,6 +6,7 @@ I use my Windows Server and VMware home lab to practice Active Directory adminis
 
 | Case study | What it demonstrates |
 | --- | --- |
+| [Active Directory Password Policy and GPO Scope](iam-labs/ad-gpo-password-policy/README.md) | Configured a password policy GPO, documented a rejected password change, and examined policy scope. |
 | [Active Directory OU Management](iam-labs/ad-ou-management/README.md) | Created and verified a hierarchy for users, groups, and computers. |
 | [Finance File Share Permissions](iam-labs/finance-file-share-permissions/README.md) | Configured share and NTFS permissions and tested access from the client. |
 | [Group Policy Management](iam-labs/ad-group-policy-management/README.md) | Linked a policy to an OU and verified the Control Panel restriction. |
