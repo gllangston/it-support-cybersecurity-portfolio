@@ -27,7 +27,7 @@ Created a folder on the domain controller:
 
 C:\Finance-Files
 
-![Create Folder](create-finance-file.png)
+![Create Folder](screenshots/create-finance-file.png)
 
 ---
 
@@ -35,7 +35,7 @@ C:\Finance-Files
 
 Enabled folder sharing and assigned access to Finance_Group:
 
-![Share Permissions](finance-group-permission.png)
+![Share Permissions](screenshots/finance-group-permission.png)
 
 ---
 
@@ -43,7 +43,7 @@ Enabled folder sharing and assigned access to Finance_Group:
 
 Observed that inherited permissions were automatically applied:
 
-![Inherited Permissions](Inherited-permissions.png)
+![Inherited Permissions](screenshots/Inherited-permissions.png)
 
 ---
 
@@ -51,7 +51,7 @@ Observed that inherited permissions were automatically applied:
 
 Disabled inheritance to gain full control over permissions:
 
-![Disable Inheritance](disable-inheritance.png)
+![Disable Inheritance](screenshots/disable-inheritance.png)
 
 ---
 
@@ -59,9 +59,9 @@ Disabled inheritance to gain full control over permissions:
 
 Removed unnecessary groups and added Finance_Group with proper access:
 
-![Everyone Removed](Everyone-permission.png)
+![Everyone Removed](screenshots/Everyone-permission.png)
 
-![Finance Group Added](Finance-group-added.png)
+![Finance Group Added](screenshots/Finance-group-added.png)
 
 Final permissions:
 - Finance_Group → Read / Modify
@@ -76,7 +76,7 @@ Final permissions:
 
 User outside Finance_Group was denied access:
 
-![Access Denied](Finance-File-no-permission.png)
+![Access Denied](screenshots/Finance-File-no-permission.png)
 
 ---
 
@@ -84,7 +84,7 @@ User outside Finance_Group was denied access:
 
 User in Finance_Group successfully accessed the shared folder:
 
-![Access Granted](Finance-File-access.png)
+![Access Granted](screenshots/Finance-File-access.png)
 
 ---
 

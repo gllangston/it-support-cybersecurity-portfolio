@@ -1,4 +1,4 @@
-## Phishing Email Investigation – 
+# Phishing Email Investigation
 
 ### Scenario
 

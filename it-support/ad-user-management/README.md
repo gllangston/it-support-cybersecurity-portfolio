@@ -1,4 +1,3 @@
-
 # Active Directory Home Lab: User Management & Access Control
 
 ## Overview
@@ -36,7 +35,7 @@ The goal of this lab was to gain hands-on experience handling common IT support 
 
 User was unable to log in due to account being disabled.
 
-![Account Disabled](disabled-account.png)
+![Account Disabled](screenshots/disabled-account.png)
 
 ---
 
@@ -45,7 +44,7 @@ User was unable to log in due to account being disabled.
 * Located user in Active Directory
 * Enabled the account
 
-![Account Enabled](enabled-account.png)
+![Account Enabled](screenshots/enabled-account.png)
 
 ---
 
@@ -61,7 +60,7 @@ User was able to successfully log in after account was restored.
 
 Created a test directory to simulate restricted access:
 
-![HR Folder](HR-Files.png)
+![HR Folder](screenshots/HR-Files.png)
 
 ---
 
@@ -87,9 +86,9 @@ A user (mbrown) who was NOT part of the HR group was still able to access a rest
 * Removed broad access groups  
 * Assigned access only to `HR_Group`  
 
-![Inheritance Prompt](Inherited.png)
+![Inheritance Prompt](screenshots/Inherited.png)
 
-![HR Group Members](ssmith-members.png)
+![HR Group Members](screenshots/ssmith-members.png)
 
 ---
 
@@ -99,7 +98,7 @@ A user (mbrown) who was NOT part of the HR group was still able to access a rest
 
 User outside HR group was denied access:
 
-![Access Denied](no-permission.png)
+![Access Denied](screenshots/no-permission.png)
 
 ---
 
@@ -107,7 +106,7 @@ User outside HR group was denied access:
 
 Disabled user could not log in:
 
-![Disabled Login](ssmith-account-disabled.png)
+![Disabled Login](screenshots/ssmith-account-disabled.png)
 
 ---
 

@@ -38,7 +38,7 @@ Users should not have access to Control Panel or system settings in order to pre
 
 A new Group Policy Object was created to manage the restriction.
 
-![Create GPO](new-gpo.png)
+![Create GPO](screenshots/new-gpo.png)
 
 ---
 
@@ -53,7 +53,7 @@ User Configuration → Policies → Administrative Templates → Control Panel
 Policy:
 **Prohibit access to Control Panel and PC settings**
 
-![Locate Setting](locate-control-panel-setting.png)
+![Locate Setting](screenshots/locate-control-panel-setting.png)
 
 ---
 
@@ -61,7 +61,7 @@ Policy:
 
 The policy was set to **Enabled** to enforce the restriction.
 
-![Enable Policy](enable-control-panel-policy.png)
+![Enable Policy](screenshots/enabled-control-panel-policy.png)
 
 ---
 
@@ -69,7 +69,7 @@ The policy was set to **Enabled** to enforce the restriction.
 
 The GPO (`Block-Control-Panel`) was linked to the `Corp-Users` OU to apply the restriction to targeted users.
 
-![Link GPO](block-control-panel.png)
+![Link GPO](screenshots/block-control-panel.png)
 
 ---
 
@@ -81,7 +81,7 @@ After applying the policy and running `gpupdate /force`, the restriction was tes
 
 The user was unable to access Control Panel, and the following message was displayed:
 
-![Restriction Message](control-panel-blocked.png)
+![Restriction Message](screenshots/control-panel-blocked.png)
 
 ---
 

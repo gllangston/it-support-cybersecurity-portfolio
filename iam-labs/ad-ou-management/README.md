@@ -1,4 +1,4 @@
-# IAM Case Study #1: Active Directory Organizational Unit Management
+# Active Directory Organizational Unit Management
 
 ## Objective
 
@@ -47,15 +47,13 @@ Reviewed the Active Directory hierarchy to verify that the three child OUs appea
 
 ## Expected OU Structure
 
+```text
 IAM Class
-
 └── My OU
-
     ├── Users
-
     ├── Groups
-
     └── Computers
+```
 
 ## Security and IAM Concepts
 

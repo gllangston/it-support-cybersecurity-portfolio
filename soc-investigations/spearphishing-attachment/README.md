@@ -1,7 +1,4 @@
-
-Case Study 
-
-Spearphishing with an Attachment  
+# Spearphishing with an Attachment
 
 “We received a ticket for a user who got a suspicious email with an attachment that looked like it came from Adobe. 
 
@@ -17,8 +14,9 @@ So based on that, I concluded the attachment was malicious and the system was li
 
 From there, I wanted to determine the scope of the incident, so I checked the environment for any additional activity related to the same indicators—like the malicious IP, domain, and file hash—over a recent period. 
 
-I didn’t find any similar activity on other systems, which indicated the incident was isolated to that single user. 
+I didn’t find any similar activity on other systems, which indicated the incident was isolated to that single user.
 
- 
+## Evidence
 
- 
+- [virustotal hits](screenshots/virustotal-hits.png)
+- [wazuh powershell and ip](screenshots/wazuh-powershell-and-ip.png)
