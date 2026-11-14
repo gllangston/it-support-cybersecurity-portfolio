@@ -75,13 +75,57 @@ I initially questioned whether the **WIN-SERVER** name in the editor meant I was
 
 3. With a disposable local standard account and a confirmed effective six-character minimum, test a five-character candidate and a fresh candidate of at least six characters. Keep the other conditions consistent and account for any additional effective rules. Record the expected and actual results without saving the passwords. If the exercise is meant to test a separate policy for a specific domain user, use a fine-grained password policy in a separate follow-up.
 
+## Follow-up lab: password requirements and account lockout
+
+### Password requirements
+
+On November 13, I revisited **Udemy Group Policy** and entered the next exercise values in **Account Policies → Password Policy**.
+
+| Setting | Initial value | Follow-up value | Evidence |
+| --- | --- | --- | --- |
+| Password history | 0 passwords | 5 passwords | [History setting](screenshots/08-password-history-five.png) |
+| Minimum password length | 6 characters | 8 characters | [Length setting](screenshots/09-minimum-length-eight.png) |
+| Complexity | Disabled | Enabled selected | [Complexity dialog](screenshots/10-complexity-enabled-selection.png) |
+
+The [refresh output](screenshots/11-server-policy-refresh.png) shows `gpupdate /force` completed on Windows Server 2022. The complexity screenshot shows the selection before confirming the change. The saved settings, applied policy on `WIN-VICTIM`, and password-change outcomes remain to be verified.
+
+### Lockout configuration and domain account recovery
+
+I opened [Account Lockout Policy](screenshots/12-lockout-policy-location.png) in the same GPO. Setting the duration prompted Windows to [suggest a five-attempt threshold](screenshots/14-suggested-lockout-values.png). I entered three attempts to match the exercise.
+
+| Setting | Value entered | Evidence |
+| --- | --- | --- |
+| Account lockout threshold | 3 failed sign-ins | [Threshold](screenshots/15-lockout-threshold-three.png) |
+| Account lockout duration | 30 minutes | [Duration](screenshots/13-lockout-duration-30.png) |
+| Reset account lockout counter after | 30 minutes | [Counter reset](screenshots/16-lockout-counter-reset-30.png) |
+
+The duration starts when the account locks. The counter reset interval controls when the failed sign-in count clears before reaching the threshold.
+
+In Active Directory Users and Computers, I selected **Unlock account** for the domain user `WINSERVER\udemy.user1`. The screenshot shows the unlock selection. A check of the saved account state and a successful sign-in would verify recovery.
+
+![Unlock account selected for the lab domain user](screenshots/17-domain-account-unlock-selection.png)
+
+### Verification plan
+
+- On `WIN-VICTIM`, check the applied GPO with `gpresult /r /scope computer` from an elevated Command Prompt and confirm the effective local lockout settings with `net accounts`. Use a disposable local standard account to test the workstation policy.
+- On `WIN-SERVER`, check the effective AD password and lockout settings for the domain user. The workstation OU policy can govern local accounts in scope. The domain account follows the domain default or an applicable fine-grained policy. Compare the values before attributing the lockout to any policy.
+
+  ```powershell
+  $policy = Get-ADUserResultantPasswordPolicy -Identity 'udemy.user1'
+  if (-not $policy) { $policy = Get-ADDefaultDomainPasswordPolicy }
+  $policy | Select-Object LockoutThreshold, LockoutDuration, LockoutObservationWindow
+  Get-ADUser -Identity 'udemy.user1' -Properties LockedOut |
+      Select-Object SamAccountName, LockedOut
+  ```
+
 ## Interview explanation
 
 > In my Active Directory lab, I confirmed the workstation name, moved its computer object into the lab OU, and configured a password-policy GPO at the parent OU. Windows rejected one password change during testing. The GPO editor showed what I configured, so my next step was to check the workstation's applied policies and identify the account I tested. That distinction matters because a workstation OU policy and a domain user's password policy have different scopes.
 
 ## References
 
-- Udemy IAM course lab objectives, slides 34–35.
+- Udemy IAM course lab objectives, slides 34–38.
+- [Microsoft Learn — Account Lockout Policy](https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-10/security/threat-protection/security-policy-settings/account-lockout-policy)
 - [Microsoft Learn — Account policies](https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-10/security/threat-protection/security-policy-settings/account-policies)
 - [Microsoft Learn — Group Policy processing](https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/manage/group-policy/group-policy-processing)
 - [Microsoft Learn — Fine-grained password policies for AD DS](https://learn.microsoft.com/en-us/windows-server/identity/ad-ds/get-started/adac/fine-grained-password-policies)
