@@ -6,6 +6,7 @@ I use my Windows Server and VMware home lab to practice Active Directory adminis
 
 | Case study | What it demonstrates |
 | --- | --- |
+| [Okta and ServiceNow SAML SSO Pilot](iam-labs/okta-servicenow-sso/README.md) | Scoped Active Directory import, configured SAML and administrator recovery, and documented an end-user sign-in issue. |
 | [Active Directory Password Policy and GPO Scope](iam-labs/ad-gpo-password-policy/README.md) | Configured password and lockout settings, documented an AD unlock step, and examined policy scope. |
 | [Active Directory OU Management](iam-labs/ad-ou-management/README.md) | Created and verified a hierarchy for users, groups, and computers. |
 | [Finance File Share Permissions](iam-labs/finance-file-share-permissions/README.md) | Configured share and NTFS permissions and tested access from the client. |
