@@ -14,6 +14,13 @@ The HR workbook supplied a CSV with employee IDs, names, departments, managers, 
 
 The first attempt stopped before reaching AD because Windows PowerShell couldn't find either `python` or `py`. The ActiveDirectory module was already present. I installed Python 3.13.17 on the Server VM, moved the extracted lab folder into the VM, and confirmed `python --version` in a fresh PowerShell session.
 
+<details>
+<summary>Python installation evidence</summary>
+
+![Python 3.13.17 setup completed successfully](screenshots/python-setup.webp)
+
+</details>
+
 ## Pilot and staged rollout
 
 I started with a dry run and confirmed the script read 200 roster rows and selected 10 for Wave 1. I created the lab OUs and security groups, staged the pilot, and checked its results before moving on to Waves 2 and 3.
@@ -27,6 +34,27 @@ python .\onboard_ad.py verify .\acquisition_roster_200.csv --wave 1
 
 The script wrote timestamped CSVs for planning, staging, and verification. I used the logs to reconcile the rollout by wave.
 
+<details>
+<summary>Provisioning and CSV log evidence</summary>
+
+**Wave 1 pilot**
+
+The screenshot shows the 200-row dry run selecting 10 accounts, followed by staging and verification of the pilot.
+
+![Wave 1 dry run and ten staged and verified disabled accounts](screenshots/wave-1-pilot.webp)
+
+**Wave 2 expansion**
+
+The screenshot shows part of the staging and verification output for the next 40 accounts. The complete wave counts appear in the final reconciliation.
+
+![Wave 2 staging and partial verification output](screenshots/wave-2-rollout.webp)
+
+**Timestamped CSV logs**
+
+![Plan, stage, and verify CSV files saved during the rollout](screenshots/csv-run-logs.webp)
+
+</details>
+
 ## Final verification
 
 After staging Wave 3, I ran `verify --wave all`. I grouped the resulting CSV by wave and status and checked the totals against the HR roster.
@@ -37,5 +65,9 @@ After staging Wave 3, I ran `verify --wave all`. I grouped the resulting CSV by 
 | 2 · Expansion | 40 | 40 | 50 |
 | 3 · Final rollout | 150 | 150 | 200 |
 | **Total** | **200** | **200** | **200** |
+
+![Final verification shows 10, 40, and 150 accounts with VerifiedDisabled status](screenshots/final-verification.webp)
+
+*Screenshots have been cropped or redacted to conceal local paths and lab hostnames.*
 
 Staging and directory verification are complete. Day 1 activation and first sign-in testing remain pending. The [Okta and ServiceNow SAML pilot](../okta-servicenow-sso/README.md) documents the related application-access work.
