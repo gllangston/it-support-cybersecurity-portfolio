@@ -24,7 +24,7 @@ I continued the Finance permissions test from the Windows client. When the share
 | Close and reopen the file | Saved text is still present | Passed |
 | Close the file and delete it from the share | File is removed | Passed |
 
-These results document the operator’s confirmations during the guided manual test. The four screenshots below cover the earlier group membership, configured NTFS permissions, successful folder access, and HR access denial. The file-operation results were recorded without additional screenshots.
+The manual results were confirmed during the guided test. Follow-up screenshots show the server folder’s shared status and network path, the test file listed in the share, and its text displayed in Notepad. Reopening with the saved text present and successful deletion were confirmed by the operator. The submitted screenshots show the file before deletion.
 
 The follow-up completed the planned create, save, reopen, and delete checks for the Finance permissions test.
 
@@ -47,6 +47,21 @@ The follow-up completed the planned create, save, reopen, and delete checks for 
 
 ![Windows reported insufficient permission to open the Finance share during the HR test](screenshots/04-hr-share-access-denied.webp)
 
+
+**Share status and network path**
+
+![Folder Sharing tab shows the share name and network path with the hostname concealed](screenshots/05-share-network-path.webp)
+
+**Test file in the share**
+
+![File Explorer lists Finance-Permissions-Test as a text document in the Finance share](screenshots/06-finance-test-file.webp)
+
+**Test file content**
+
+![Notepad displays Finance permission test successful in Finance-Permissions-Test](screenshots/07-finance-file-content.webp)
+
 </details>
+
+*Screenshots are cropped to the relevant windows, with lab hostnames concealed.*
 
 The [Okta and ServiceNow SAML pilot](../okta-servicenow-sso/README.md) documents the related application-access work.
