@@ -11,7 +11,22 @@ I tested the same share from a domain-joined Windows 10 client in separate Finan
 | Finance | Open the Finance share | File Explorer opened the share and displayed its empty contents. |
 | HR | Sign in to Windows and be denied access to the Finance share | Windows sign-in succeeded. File Explorer reported insufficient permission to open the share. |
 
-The pilot verified folder access for the Finance account and access denial for the HR account. The NTFS screenshot shows **Modify** was configured. File creation, editing, and deletion remain untested. The activation pilot covered two test accounts.
+The pilot verified folder access for the Finance account and access denial for the HR account. The NTFS screenshot shows **Modify** was configured. The activation pilot covered two test accounts.
+
+## Follow-up file permission testing
+
+I continued the Finance permissions test from the Windows client. When the share initially returned **0x80070043 — The network name cannot be found**, I checked the server folder’s **Sharing** tab and copied its exact network path into the client’s File Explorer. The folder then opened without an error.
+
+| Action | Expected result | Manual test result |
+| --- | --- | --- |
+| Create `Finance-Permissions-Test.txt` in the share | File is created | Passed |
+| Open the file, enter test text, and save | Changes save successfully | Passed |
+| Close and reopen the file | Saved text is still present | Passed |
+| Close the file and delete it from the share | File is removed | Passed |
+
+These results document the operator’s confirmations during the guided manual test. The four screenshots below cover the earlier group membership, configured NTFS permissions, successful folder access, and HR access denial. The file-operation results were recorded without additional screenshots.
+
+The follow-up completed the planned create, save, reopen, and delete checks for the Finance permissions test.
 
 <details>
 <summary>Screenshot evidence</summary>
