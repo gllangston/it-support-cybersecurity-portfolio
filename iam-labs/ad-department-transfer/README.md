@@ -8,12 +8,12 @@ This exercise builds on [AD Group Based Access Control and Validation](../ad-gro
 
 ## Scenario and intended access
 
-The lab scenario represented an approved department transfer. I used HR Operations Manager as the simulated destination role. An actual HR request and approval workflow were outside this exercise.
+The lab scenario represented an approved department transfer. I used Human Resource Operations Manager as the simulated destination role. An actual HR request and approval workflow were outside this exercise.
 
 | Item | Before transfer | After transfer |
 | --- | --- | --- |
 | Department | Finance | HR |
-| Job title | Finance Operations Manager | HR Operations Manager |
+| Job title | Finance Operations Manager | Human Resource Operations Manager |
 | Department security group | ACQ-Finance-Users | ACQ-HR-Users |
 | Primary group | Domain Users | Domain Users |
 | Finance share access | Previously tested successfully | Denied after transfer |
@@ -23,7 +23,7 @@ The lab scenario represented an approved department transfer. I used HR Operatio
 
 In Active Directory Users and Computers, I reviewed Cameron’s Organization and Member Of tabs. His department was Finance, and his memberships were ACQ-Finance-Users and Domain Users.
 
-I changed Department to HR and Job Title to HR Operations Manager. Member Of still showed the Finance group afterward. This demonstrated that editing those descriptive attributes did not automatically change the group permissions in this lab.
+I changed Department to HR and Job Title to Human Resource Operations Manager. Member Of still showed the Finance group afterward. This demonstrated that editing those descriptive attributes did not automatically change the group permissions in this lab.
 
 I resolved ACQ-HR-Users with Check Names, added it, and removed ACQ-Finance-Users. I confirmed that ACQ-HR-Users and Domain Users remained.
 
@@ -63,7 +63,7 @@ The Explorer New menu offered a folder option without a text-document option. I 
 | Close and reopen the file | Saved text persists | Test text remained |
 | Close and delete the test file | Allowed | File deleted |
 
-The role and membership changes, fresh sign-in, and file-operation results were confirmed during the guided manual lab. The supplied screenshots document the Finance denial, HR NTFS configuration, and opened HR share. Separate screenshots of the updated account attributes, memberships, and file operations were not supplied.
+The supplied lab evidence shows the Finance department and title before the transfer, the HR department and updated title entered during the change, the before-and-after group memberships, the Finance access denial, and HR share and NTFS permissions. It also shows HR-Transfer-Test listed in the share and its text displayed in Notepad. Saving the role changes, the fresh sign-in, reopening the file with its text intact, and successful deletion were confirmed during the guided manual lab. The submitted file screenshots show the file before deletion.
 
 The supporting screenshots are retained in the lab conversation and are pending publication approval.
 
