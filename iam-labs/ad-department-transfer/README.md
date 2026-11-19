@@ -1,79 +1,88 @@
 # AD Department Transfer and Access Validation
 
-**Jade-Sec IAM home lab · Mover stage of identity lifecycle management**
+**Jade-Sec IAM home lab · Identity lifecycle management — Mover**
 
-I simulated Cameron Carter’s transfer from Finance to HR in my Windows Server 2022 and Windows client VMware lab. I updated his role information and security group memberships, then tested that his previous Finance share was denied and his new HR share was accessible. I also created, saved, reopened, and deleted a test file in the HR share.
+I simulated Cameron Carter’s transfer from Finance to HR using Active Directory on Windows Server 2022 and a domain-joined Windows client in VMware. I updated his role and security groups, verified that Finance access was denied, and tested HR access by saving, reopening, and deleting a file.
 
-This exercise builds on [AD Group Based Access Control and Validation](../ad-group-based-access-control-and-validation/README.md) and the [200-user acquisition onboarding project](../jade-sec-ad-bulk-onboarding/README.md).
+## Scenario and changes
 
-## Scenario and intended access
+The scenario represented an approved HR transfer. The request and approval workflow were simulated.
 
-The lab scenario represented an approved department transfer. I used Human Resource Operations Manager as the simulated destination role. An actual HR request and approval workflow were outside this exercise.
-
-| Item | Before transfer | After transfer |
+| Item | Before | After |
 | --- | --- | --- |
 | Department | Finance | HR |
 | Job title | Finance Operations Manager | Human Resource Operations Manager |
-| Department security group | ACQ-Finance-Users | ACQ-HR-Users |
+| Department group | ACQ-Finance-Users | ACQ-HR-Users |
 | Primary group | Domain Users | Domain Users |
-| Finance share access | Previously tested successfully | Denied after transfer |
-| HR share access | HR test share created during this exercise | Opened successfully |
+| Finance share | Previously accessible | Access denied |
+| HR share | Created during this exercise | Accessible |
 
-## Update role information and access
+## Implementation
 
-In Active Directory Users and Computers, I reviewed Cameron’s Organization and Member Of tabs. His department was Finance, and his memberships were ACQ-Finance-Users and Domain Users.
+1. **Review and update the account.** In Active Directory Users and Computers, I checked the Organization and Member Of tabs, then changed the department and title. Updating those attributes did not automatically change group membership in this lab.
+2. **Update access assignments.** I added ACQ-HR-Users and removed ACQ-Finance-Users, retaining Domain Users. I signed Cameron out and back in on the client to test with updated group information.
+3. **Test previous access.** Opening the Finance share returned a permissions denial.
+4. **Prepare the new resource.** I created `C:\ACQ-HR-Test` on the server. At the SMB share level, I removed Everyone and granted ACQ-HR-Users Change and Read. At the NTFS level, I granted that group Modify.
+5. **Resolve inherited permissions.** Windows blocked removal of two Users entries inherited from C:\. I disabled inheritance on the HR test folder, converted inherited entries into explicit permissions, then removed both Users entries. I retained SYSTEM, Administrators, and CREATOR OWNER.
+6. **Test new access.** From Cameron’s client session, I opened the HR share. The New menu lacked a text-document option, so I used Notepad to save `HR-Transfer-Test.txt` directly through the network path.
 
-I changed Department to HR and Job Title to Human Resource Operations Manager. Member Of still showed the Finance group afterward. This demonstrated that editing those descriptive attributes did not automatically change the group permissions in this lab.
+## Validation
 
-I resolved ACQ-HR-Users with Check Names, added it, and removed ACQ-Finance-Users. I confirmed that ACQ-HR-Users and Domain Users remained.
-
-On the domain-joined client, I signed Cameron out and back in before testing. A fresh sign-in provided updated group information for the access tests.
-
-## Verify removal of Finance access
-
-I opened the same Finance network share that Cameron had previously accessed. Windows reported insufficient permission to open it.
-
-This was the expected outcome for the previous department’s resource.
-
-## Configure the HR test resource
-
-An HR folder was absent from the server’s C drive, so I created `C:\ACQ-HR-Test` and shared it as ACQ-HR-Test.
-
-| Permission layer | Configuration |
+| Test | Result |
 | --- | --- |
-| SMB share | Removed Everyone and granted ACQ-HR-Users Change and Read |
-| NTFS | Granted ACQ-HR-Users Modify for this folder, subfolders, and files |
-| Administrative entries | Retained SYSTEM, Administrators, and CREATOR OWNER |
+| Finance share after transfer | Permission denied |
+| HR share after transfer | Opened successfully |
+| Create and save the HR test file | Successful |
+| Close and reopen the file | Saved text remained |
+| Delete the HR test file | Successful |
 
-The new folder inherited two Users permission entries from C:\. An attempt to remove an inherited entry produced a Windows warning. I disabled inheritance on the HR test folder and selected the option to convert inherited entries into explicit permissions. I then removed both Users entries and saved the changes.
+The screenshots document account settings, group memberships, Finance denial, HR permissions, the test file, and its contents. The updated role screenshot shows values entered during the change. Saving those changes, the fresh sign-in, reopening with text intact, and deletion were confirmed during the guided manual lab. The file screenshots show the file before deletion.
 
-The final Advanced Security Settings showed ACQ-HR-Users with Modify and the retained administrative entries, with Inherited from set to None.
+## Evidence
 
-## Verify new access and file operations
+<details>
+<summary>Account settings and group memberships</summary>
 
-From Cameron’s session on the Windows client, I opened the HR network share. File Explorer displayed its empty contents.
+**Before the transfer**
 
-The Explorer New menu offered a folder option without a text-document option. I used Notepad to enter test text and saved it directly to `HR-Transfer-Test.txt` through the HR share’s network path.
+![Finance group and Domain Users membership before the transfer](screenshots/01-finance-membership-before.webp)
 
-| Test | Expected outcome | Observed outcome |
-| --- | --- | --- |
-| Open Finance share | Denied | Permission denial displayed |
-| Open HR share | Allowed | Folder opened |
-| Create and save HR-Transfer-Test.txt | Allowed | File saved |
-| Close and reopen the file | Saved text persists | Test text remained |
-| Close and delete the test file | Allowed | File deleted |
+![Finance department and Finance Operations Manager title](screenshots/02-finance-role-before.webp)
 
-The supplied lab evidence shows the Finance department and title before the transfer, the HR department and updated title entered during the change, the before-and-after group memberships, the Finance access denial, and HR share and NTFS permissions. It also shows HR-Transfer-Test listed in the share and its text displayed in Notepad. Saving the role changes, the fresh sign-in, reopening the file with its text intact, and successful deletion were confirmed during the guided manual lab. The submitted file screenshots show the file before deletion.
+**Transfer changes**
 
-The supporting screenshots are retained in the lab conversation and are pending publication approval.
+![HR department and Human Resource Operations Manager title entered](screenshots/03-hr-role-after.webp)
+
+![HR group and Domain Users membership after Finance membership removal](screenshots/04-hr-membership-after.webp)
+
+</details>
+
+<details>
+<summary>Finance denial and HR permission configuration</summary>
+
+![Finance share reports insufficient permission after the transfer](screenshots/05-finance-access-denied.webp)
+
+![HR security group has Change and Read share permissions](screenshots/06-hr-share-permissions.webp)
+
+![HR group has NTFS Modify with broad Users entries removed and inheritance disabled](screenshots/07-hr-ntfs-permissions.webp)
+
+</details>
+
+<details>
+<summary>HR file access</summary>
+
+![HR-Transfer-Test text document listed in the HR network share](screenshots/08-hr-test-file.webp)
+
+![Notepad displays HR transfer access test successful](screenshots/09-hr-test-content.webp)
+
+</details>
+
+*Screenshots are cropped to the relevant evidence, with account identifiers, domain names, and hostnames concealed.*
 
 ## Lessons and interview explanation
 
-- **Least privilege.** I removed Finance membership when that access was no longer required for the simulated role.
-- **Privilege creep.** Adding HR membership while retaining Finance membership would leave obsolete department access.
-- **Permission inheritance.** I identified broad entries inherited from the parent and converted them before removing them from the test folder.
-- **Validation.** I checked both the removal of previous access and the ability to work in the new resource.
+Removing obsolete Finance membership applied least privilege and prevented privilege creep. Reviewing both share and NTFS permissions helped establish the intended HR access. Testing both denied and allowed outcomes verified the transfer.
 
-> In my Active Directory home lab, I simulated an employee transfer from Finance to HR. I updated the department and title, replaced the Finance security group membership with HR membership, and used a fresh client sign-in for testing. I verified that the Finance share returned a permissions denial and the HR share opened successfully. While setting up the HR resource, I resolved an inherited-permissions warning and restricted its NTFS permissions. I then confirmed that the user could save, reopen, and delete a test file in the HR share.
+> In my Active Directory home lab, I simulated a Finance-to-HR transfer. I updated the employee’s department and title, replaced the Finance group membership with HR membership, and tested from a fresh client sign-in. Finance access was denied, while HR access worked. I also resolved an inherited-permissions warning and verified that the user could save, reopen, and delete a file in the HR share.
 
-The completed scope covers one AD user’s transfer and access to two SMB shares. Application access through Okta and ServiceNow was outside this transfer test.
+This exercise covered one AD user and two SMB resources. Related work includes [bulk acquisition onboarding](../jade-sec-ad-bulk-onboarding/README.md) and [group-based access control](../ad-group-based-access-control-and-validation/README.md).
