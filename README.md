@@ -8,6 +8,7 @@ I use my Windows Server and VMware home lab to practice Active Directory adminis
 | --- | --- |
 | [Jade-Sec Bulk Active Directory Onboarding](iam-labs/jade-sec-ad-bulk-onboarding/README.md) | Staged and verified 200 synthetic acquisition accounts in three waves using Python, PowerShell, and CSV run logs. |
 | [AD Group Based Access Control and Validation](iam-labs/ad-group-based-access-control-and-validation/README.md) | Configured Finance group permissions and verified allowed and denied share access using two test accounts. |
+| [AD Department Transfer and Access Validation](iam-labs/ad-department-transfer/README.md) | Updated a user’s role and groups, verified Finance access removal, and tested HR share and file access. |
 | [Okta and ServiceNow SAML SSO Pilot](iam-labs/okta-servicenow-sso/README.md) | Scoped Active Directory import, configured SAML and administrator recovery, and documented an end-user sign-in issue. |
 | [Active Directory Password Policy and GPO Scope](iam-labs/ad-gpo-password-policy/README.md) | Configured password and lockout settings, documented an AD unlock step, and examined policy scope. |
 | [Active Directory OU Management](iam-labs/ad-ou-management/README.md) | Created and verified a hierarchy for users, groups, and computers. |
